@@ -1,0 +1,79 @@
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="navbar-brand">
+            <a href="/">
+                <img id="logo" src="{{ asset('images/logo.png') }}" alt="Logo du garage">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse{% if auto.login.error is defined and auto.login.error %} show{% endif %}" id="collapsibleNavbar">
+            <ul id="navigation" class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href=""><h1>Services</h1></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=""><h1>Occasions</h1></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=""><h1>Contact</h1></a>
+                </li>
+            </ul>
+            <ul id="login" class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        {% if app.user %}
+                            {{ app.user.userIdentifier }}
+                        {% else %}
+                            Se connecter
+                        {% endif %}
+                    </a>
+                    <ul id="login_form" class="dropdown-menu dropdown-menu-end{% if auto.login.error is defined and auto.login.error %} show" data-bs-popper="static{% endif %}">
+                        {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="space">
+                                    <a href="#">Mon espace</a>
+                                </div>
+                                <hr>
+                            {% endif %}
+                            <div class="space">
+                                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                            </div>
+                        {% else %}
+                            <form method="post" action="{{ path('app_login') }}">
+                                {% if auto.login.error is defined and auto.login.error %}
+                                    <div>
+                                        <div class="alert alert-danger">{{ auto.login.error.messageKey|trans(auto.login.error.messageData, 'security') }}</div>
+                                    </div>
+                                {% endif %}
+                                <div class="form-label-input">
+                                    <label for="inputEmail">Email :</label>
+                                    <input type="email" value="{% if auto.login.last_email is defined %}{{ auto.login.last_email }}{% else %}{% endif %}" name="email" id="inputEmail"
+                                           autocomplete="email" required autofocus>
+                                </div>
+                                <div class="form-label-input">
+                                    <label for="inputPassword">Mot de passe :</label>
+                                    <input type="password" name="password" id="inputPassword"
+                                           autocomplete="current-password" required>
+                                </div>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                {% if auto.login.force_redirect != NULL %}
+                                    <input type="hidden" name="route" value="{{ auto.login.force_redirect }}">
+                                {% else %}
+                                    <input type="hidden" name="route" value="{{ app.request.attributes.get('_route') }}">
+                                    <input type="hidden" name="json_get_params" value="{{ app.request.query.all() | json_encode }}">
+                                {% endif %}
+                                <div class="text-center">
+                                    <button class="btn" type="submit">SE CONNECTER</button>
+                                </div>
+                            </form>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,20 @@
+@mixin my_box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75);
+}
+
+@mixin my_animation_apparition($start-point) {
+  animation: apparition 300ms ease-in-out;
+
+  @keyframes apparition {
+    from {
+      opacity: 0;
+      transform: translateY($start-point); /* L'animation commence avec un décalage horizontal de -20px */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0); /* L'animation se termine avec aucun décalage horizontal */
+    }
+  }
+}

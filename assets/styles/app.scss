@@ -1,2 +1,21 @@
 @import '~bootstrap/scss/bootstrap';
-@import "fonts/fonts.scss";
+@import 'variables';
+@import 'elements';
+
+body {
+  font-family: $text-font-family;
+  font-size: $text-font-size;
+
+  h1, h2, h3, h4 {
+    font-family: $title-font-family;
+    font-size: $title-font-size;
+    margin: 0;
+  }
+
+  main {
+    z-index: 1;
+    margin-top: $navbar-height;
+  }
+  @import "header";
+  @import "footer";
+}

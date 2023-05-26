@@ -1,0 +1,73 @@
+@import "fonts/fonts.scss";
+
+:root {
+  --navbar-height: 10vh; // Hauteur de la navbar
+  --text-font-size: 12px; // Taille de texte par defaut
+  --title-font-size: 16px; // Taille de titre par defaut
+}
+
+@media (min-width: 576px) {
+  :root {
+
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+
+  }
+}
+
+@media (min-width: 992px) {
+  root {
+    --navbar-height: 75px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --navbar-height: 100px;
+    --text-font-size: 14px; // Taille de texte par defaut
+    --title-font-size: 18px; // Taille de titre par defaut
+  }
+}
+
+@media (max-device-width: 991px) {
+
+  @media (orientation: portrait) {
+    :root {
+      --text-font-size: 30px; // Taille de texte par defaut
+      --title-font-size: 38px; // Taille de titre par defaut
+    }
+  }
+
+  @media (orientation: landscape) {
+    :root {
+      --text-font-size: 20px; // Taille de texte par defaut
+      --title-font-size: 26px; // Taille de titre par defaut
+    }
+
+  }
+
+}
+
+
+//GENERALE
+
+$title-font-size: var(--title-font-size);
+$title-font-family: 'Rajdhani', sans-serif;
+$text-font-size: var(--text-font-size);
+$text-font-family: 'Barlow', sans-serif;
+
+
+//HEADER
+//Navbar
+$navbar-breakpoint: 992px;
+$navbar-color: #B7B7B7;
+$navbar-height: var(--navbar-height);

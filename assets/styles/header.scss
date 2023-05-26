@@ -1,0 +1,82 @@
+@import "variables";
+@import "mixins";
+
+header {
+
+  .navbar-brand, .navbar {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar, #logo {
+    height: $navbar-height;
+  }
+
+  .navbar {
+    background-color: $navbar-color;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 4px 10px 0;
+  }
+
+  #login_form {
+    font-size: 1em;
+
+    @include my_animation_apparition(-2em);
+    padding: 1em;
+
+    * {
+      margin: 0.3em 0;
+    }
+  }
+
+
+
+  //Desktop
+  @media (min-width: $navbar-breakpoint) {
+    #collapsibleNavbar {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 3em;
+      margin-right: 1em;
+
+      #navigation {
+        display: flex;
+        justify-content: start;
+
+        .nav-item {
+          margin: 0 2em 0 2em;
+        }
+      }
+    }
+
+    #login_form {
+      width: (str-length('je-suis-email@gmail.com') * 1em) - 2em;
+    }
+
+  }
+
+  //Mobile
+  @media (max-width: $navbar-breakpoint) {
+
+    .navbar-toggler {
+      height: calc(#{$navbar-height} * 0.4);
+      width: calc(#{$navbar-height} * 0.4);
+      margin-right: 2em;
+    }
+
+    #collapsibleNavbar {
+      @include my_box;
+
+      .nav-item {
+        text-align: center;
+        margin: 1em 0 1em 0;
+      }
+    }
+
+    #login_form {
+      input {
+        border: rgba(0, 0, 0, 0.5) solid 1px;
+      }
+    }
+  }
+
+}
