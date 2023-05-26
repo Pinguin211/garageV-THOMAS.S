@@ -49,6 +49,7 @@ header {
     }
 
     #login_form {
+      background-color: $main-color;
       width: (str-length('je-suis-email@gmail.com') * 1em) - 2em;
     }
 

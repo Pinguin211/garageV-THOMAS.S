@@ -1,0 +1,66 @@
+{
+    "max_cutlerys": 200,
+    "timetable": {
+        "monday": {
+            "day": "closed",
+            "night": "closed"
+        },
+        "tuesday": {
+            "day": {
+                "open": "11.00",
+                "closed": "15.00"
+            },
+            "night": {
+                "open": "19.00",
+                "closed": "22.00"
+            }
+        },
+        "wednesday": {
+            "day": {
+                "open": "06.00",
+                "closed": "15.00"
+            },
+            "night": {
+                "open": "19.00",
+                "closed": "22.00"
+            }
+        },
+        "thursday": {
+            "day": {
+                "open": "11.00",
+                "closed": "15.00"
+            },
+            "night": {
+                "open": "19.00",
+                "closed": "22.00"
+            }
+        },
+        "friday": {
+            "day": {
+                "open": "11.00",
+                "closed": "15.00"
+            },
+            "night": {
+                "open": "19.00",
+                "closed": "22.00"
+            }
+        },
+        "saturday": {
+            "day": {
+                "open": "11.00",
+                "closed": "15.00"
+            },
+            "night": {
+                "open": "19.00",
+                "closed": "22.00"
+            }
+        },
+        "sunday": {
+            "day": {
+                "open": "11.00",
+                "closed": "15.00"
+            },
+            "night": "closed"
+        }
+    }
+}

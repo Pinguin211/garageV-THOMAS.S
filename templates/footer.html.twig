@@ -1,3 +1,50 @@
-<footer>
+{% import 'macros.html.twig' as macro %}
 
+<footer>
+    <div id="base" class="row">
+        <div class="col-lg-5">
+            <div id="timetable">
+                {{ macro.Timetable }}
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div id="footer-navigation">
+                <div class="row">
+                    <div class="col">
+                        <nav>
+                            <p class="title text-center">Navigation :</p>
+                            <ul>
+                                <li><a href="{{ path('app_homepage') }}"><i class="bi bi-house-door" aria-label="Accueil"> Accueil</i></a></li>
+                                <li><a href="#"><i class="bi bi-ticket" aria-label="Réservation"> Services</i></a></li>
+                                <li><a href="#"><i class="bi bi-map" aria-label="Menu"> Occasions</i></a></li>
+                                <li><a href="#"><i class="bi bi-images" aria-label="Galerie"> Contact</i></a></li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li><a href="{{ path('app_reservation_list') }}"><i class="bi bi-card-list" aria-label="Galerie"> Mon espace</i></a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col">
+                        <nav>
+                            <p class="title text-center">Suivez-nous :</p>
+                            <ul>
+                                <li><a href="#"><i class="bi bi-facebook" aria-label="Facebook"> Facebook </i></a></li>
+                                <li><a href="#"><i class="bi bi-twitter" aria-label="Twitter"> Twitter </i></a></li>
+                                <li><a href="#"><i class="bi bi-linkedin" aria-label="Linkedin"> Linkedin </i></a></li>
+                                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                                       aria-label="Youtube"><i class="bi bi-youtube"> Youtube</i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div id="label">
+                <img src="{{ asset("images/partner.png") }}" alt="Label des partenaires">
+            </div>
+        </div>
+    </div>
+    <hr id="separator">
+    <div class="row text-center"><p>Tout ce qui est sur ce site est faux !!</p></div>
 </footer>

@@ -1,0 +1,54 @@
+@import "variables";
+
+footer {
+  background-color: $secondary-color;
+  height: $footer-height;
+
+  #base {
+
+    #timetable {
+      margin: 1em;
+      padding: 1em;
+      background-color: $terce-color;
+      border-radius: 10px;
+      color: white;
+
+      dl {
+        margin: 0.5em;
+      }
+
+      .day {
+        font-weight: 400;
+      }
+
+      .hour {
+        font-weight: 500;
+      }
+
+
+    }
+
+    #footer-navigation {
+      margin: 3em 1em 0 1em;
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 0.5em 0;
+      }
+    }
+
+    #label {
+      margin: 1em;
+      text-align: center;
+      img {
+        max-width: 100%;
+        object-fit: contain;
+      }
+    }
+
+  }
+}
