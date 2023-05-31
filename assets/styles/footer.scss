@@ -2,7 +2,14 @@
 
 footer {
   background-color: $secondary-color;
-  height: $footer-height;
+
+  .f_link {
+    display: flex;
+    flex-direction: row;
+    .bi {
+      margin-right: 0.5em;
+    }
+  }
 
   #base {
 

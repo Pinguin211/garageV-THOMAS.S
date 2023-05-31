@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'variables';
 @import 'elements';
+@import "forms";
 
 
 body {
@@ -18,6 +19,11 @@ body {
     z-index: 1;
     margin-top: $navbar-height;
     background-color: $main-color;
+
+    #TEST {
+      margin: 300px;
+    }
+    @import "Pages/Pages";
   }
   @import "header";
   @import "footer";

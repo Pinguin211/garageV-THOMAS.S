@@ -1,10 +1,11 @@
 @import "variables";
+@import "mixins";
 
 .btn {
   background-color: $interact-color;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 0.5em;
+  padding: 0.5em 2em;
   color: white;
   font-family: Rajdhani, sans-serif;
   font-weight: 600;
@@ -23,22 +24,8 @@
   font-weight: 500;
 }
 
-.form-label-input {
-  display: flex;
-  flex-direction: column;
-
-  input {
-    border-radius: 3px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-    border: none;
-    margin-top: 0 !important;
-  }
-
-  label {
-    font-family: Barlow, sans-serif;
-    font-weight: normal;
-    margin-bottom: 0 !important;
-  }
+.box {
+  @include my_box
 }
 
 a {
@@ -53,4 +40,99 @@ a {
   }
 }
 
+.headpiece {
+  width: $headpiece-width;
+  @include my_box;
 
+  #headpiece-image {
+    width: 100%;
+    height: calc(#{$headpiece-width} * 0.5);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #headpieceCarrouselControls, .carousel-inner, .carousel-item {
+      height: 100%;
+    }
+
+  }
+
+  #headpiece-content {
+    margin: 1em;
+  }
+
+  #headpiece-button {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  #car-content-headpiece {
+    .title {
+      font-weight: 600;
+    }
+    .car-content-headpiece-info {
+      margin: 0.5em 0;
+    }
+  }
+}
+
+.bubble {
+  @include my_bubble
+}
+
+.loader {
+  @include loader
+}
+
+
+.notification {
+  z-index: 555000;
+  position: fixed;
+  min-width: 30vw;
+  right: 1em;
+  @include my_box;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.notification-close {
+  color: #999;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+#options_list {
+  width: 100%;
+  @media (orientation: portrait) {
+    width: 100%;
+  }
+  height: 30em;
+  background-color: $main-color;
+  border-radius: 5px;
+  border: black 1px solid;
+  overflow: auto;
+  padding: 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li:nth-child(even) {
+    background-color: $terce-color2;
+  }
+  li {
+    padding: 0.2em 0 0.2em 2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    p {
+      margin: 0 0 0 2em;
+    }
+    input {
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

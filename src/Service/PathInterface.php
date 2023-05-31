@@ -36,6 +36,11 @@ class PathInterface
         return $this->getPath('getPublicDirPath', 'images/', $create_path);
     }
 
+    public function getCarImagesDirPath(bool $create_path = true): string
+    {
+        return $this->getPath('getImagesDirPath', 'occasions/', $create_path);
+    }
+
     //PARTIE FICHIER
 
     public function getInfoFilePath(): string

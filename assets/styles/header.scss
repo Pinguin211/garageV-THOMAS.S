@@ -18,14 +18,9 @@ header {
   }
 
   #login_form {
-    font-size: 1em;
 
     @include my_animation_apparition(-2em);
     padding: 1em;
-
-    * {
-      margin: 0.3em 0;
-    }
   }
 
 
@@ -70,12 +65,6 @@ header {
       .nav-item {
         text-align: center;
         margin: 1em 0 1em 0;
-      }
-    }
-
-    #login_form {
-      input {
-        border: rgba(0, 0, 0, 0.5) solid 1px;
       }
     }
   }

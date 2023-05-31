@@ -11,9 +11,15 @@
 <body>
 {{ include('header.html.twig') }}
 <main>
+    <div id="notificationContainer"></div>
     {% block body %}{% endblock %}
 </main>
 {{ include('footer.html.twig') }}
+
+{% if auto.csrf.key != false %}
+    <div id="{{ auto.csrf.id }}" data-csrf-token="{{ csrf_token(auto.csrf.key) }}"></div>
+{% endif %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}

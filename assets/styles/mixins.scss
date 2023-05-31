@@ -4,6 +4,13 @@
   background-color: $main-color;
   border-radius: 10px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+}
+
+@mixin my_bubble {
+  background-color: $terce-color2;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 @mixin my_animation_apparition($start-point) {
@@ -18,5 +25,56 @@
       opacity: 1;
       transform: translateX(0); /* L'animation se termine avec aucun décalage horizontal */
     }
+  }
+}
+
+@mixin my_animation_infini_rotation {
+
+  animation: spin 1s linear infinite;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin loader {
+  @include my_animation_infini_rotation;
+  border: 8px solid #f3f3f3; /* Couleur de la bordure */
+  border-top: 8px solid #3498db; /* Couleur de la bordure pour le dessus */
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+}
+
+@mixin circle_cross {
+    $circle-cross-width: 1.3em;
+    width: $circle-cross-width;
+    height: $circle-cross-width;
+    border-radius: 50%;
+    background-color: #bc2d2d;
+    overflow: hidden;
+
+  &::before,
+  &::after {
+    content: "|";
+    top: 40%;
+    width: $circle-cross-width;
+    height: calc(#{$circle-cross-width} * 0.2);
+    position: absolute;
+    background-color: #d8d8d8;
+  }
+
+  &::before {
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform-origin: center;
+    transform: rotate(-45deg);
   }
 }

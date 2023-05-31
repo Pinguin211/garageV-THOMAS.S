@@ -49,15 +49,15 @@
                                         <div class="alert alert-danger">{{ auto.login.error.messageKey|trans(auto.login.error.messageData, 'security') }}</div>
                                     </div>
                                 {% endif %}
-                                <div class="form-label-input">
-                                    <label for="inputEmail">Email :</label>
+                                <div class="form-row form-first">
+                                    <label for="inputEmail" class="form-label">Email :</label>
                                     <input type="email" value="{% if auto.login.last_email is defined %}{{ auto.login.last_email }}{% else %}{% endif %}" name="email" id="inputEmail"
-                                           autocomplete="email" required autofocus>
+                                           class="form-control" autocomplete="email" required autofocus>
                                 </div>
-                                <div class="form-label-input">
-                                    <label for="inputPassword">Mot de passe :</label>
+                                <div class="form-row">
+                                    <label for="inputPassword" class="form-label">Mot de passe :</label>
                                     <input type="password" name="password" id="inputPassword"
-                                           autocomplete="current-password" required>
+                                           class="form-control" autocomplete="current-password" required>
                                 </div>
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                 {% if auto.login.force_redirect != NULL %}
@@ -66,7 +66,7 @@
                                     <input type="hidden" name="route" value="{{ app.request.attributes.get('_route') }}">
                                     <input type="hidden" name="json_get_params" value="{{ app.request.query.all() | json_encode }}">
                                 {% endif %}
-                                <div class="text-center">
+                                <div class="text-center form-row form-last">
                                     <button class="btn" type="submit">SE CONNECTER</button>
                                 </div>
                             </form>

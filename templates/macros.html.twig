@@ -1,3 +1,5 @@
+
+{# POUR LA TIMETABLE #}
 {% macro Timetable() %}
     {% set timetable =  getTimetable() %}
     {% if timetable is same as(false) %}
@@ -33,4 +35,104 @@
             <dd class="col">{{ day.getNightSessionString }}</dd>
         </div>
     </dl>
+{% endmacro %}
+
+
+{# POUR LES VIGNETTES #}
+{% macro Headpiece(image_path, image_alt, content, button_name) %}
+    <div class="headpiece">
+        <div id="headpiece-image">
+            <img src="{{ asset(image_path) }}" alt="{{ image_alt }}">
+        </div>
+        <div id="headpiece-content">
+            {{ content }}
+        </div>
+        <div id="headpiece-button">
+            <button class="btn">{{ button_name }}</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro HeadpieceCaroussel(arr_image_path, image_alt, content, button_name) %}
+    <div class="headpiece">
+        <div id="headpiece-image">
+            <div id="headpieceCarrouselControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="99999999999">
+                <div class="carousel-inner">
+                    {% if arr_image_path | length <= 1 %}
+                    <div class="carousel-item active">
+                        <img src="{{ asset(arr_image_path[0]) }}" alt="{{ image_alt }} - 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset(arr_image_path[0]) }}" alt="{{ image_alt }} - 1">
+                    </div>
+                    {% else %}
+                        {% set i = 0 %}
+                        {% for path in arr_image_path %}
+                            {% if i == 0 %}
+                                <div class="carousel-item active">
+                                    <img src="{{ asset(arr_image_path[i]) }}" alt="{{ image_alt ~ ' - ' ~ i }}">
+                                </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <img src="{{ asset(arr_image_path[i]) }}" alt="{{ image_alt ~ ' - ' ~ i }}">
+                                </div>
+                            {% endif%}
+                            {% set i = i + 1 %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#headpieceCarrouselControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#headpieceCarrouselControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <div id="headpiece-content">
+            {{ content }}
+        </div>
+        <div id="headpiece-button">
+            <button class="btn">{{ button_name }}</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro CarContentHeadpiece(car) %}
+    <div id="car-content-headpiece">
+        <div class="title">{{ car.gettitle }}</div>
+        <div class="car-content-headpiece-info">{{ car.getyear }}</div>
+        <div class="car-content-headpiece-info">{{ car.getfuelname }}</div>
+        <div class="car-content-headpiece-info">{{ car.getkilometers | number_format(0, ',', ' ') }} km</div>
+        <div class="text-center title">{{ car.getprice | number_format(0, ',', ' ') }} €</div>
+    </div>
+{% endmacro %}
+
+{% macro CarHeadpiece(car) %}
+    {{ _self.HeadpieceCaroussel(
+        car.getAllImagesAssetsPath(),
+        'image de ' ~ car.gettitle,
+        _self.CarContentHeadpiece(car),
+        'Détails'
+    ) }}
+{% endmacro %}
+
+{% macro CarHeadpiece1(car) %}
+    {{ _self.Headpiece(
+        car.getFirstImageAssetPath(),
+        'image de ' ~ car.gettitle,
+        _self.CarContentHeadpiece(car),
+        'Détails'
+    ) }}
+{% endmacro %}
+
+{# FORMULAIRE #}
+{% macro formRow(form_part, label_class, widget_class, errors_class, class) %}
+    <div class="form-row {{ class }}">
+        {{ form_label(form_part, null,{'label_attr': {'class': label_class}}) }}
+        {{ form_widget(form_part, {'attr': {'class': widget_class}}) }}
+        <div class="{{ errors_class }}">
+            {{ form_errors(form_part) }}
+        </div>
+    </div>
 {% endmacro %}

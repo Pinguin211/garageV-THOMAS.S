@@ -14,25 +14,25 @@
                         <nav>
                             <p class="title text-center">Navigation :</p>
                             <ul>
-                                <li><a href="{{ path('app_homepage') }}"><i class="bi bi-house-door" aria-label="Accueil"> Accueil</i></a></li>
-                                <li><a href="#"><i class="bi bi-ticket" aria-label="Réservation"> Services</i></a></li>
-                                <li><a href="#"><i class="bi bi-map" aria-label="Menu"> Occasions</i></a></li>
-                                <li><a href="#"><i class="bi bi-images" aria-label="Galerie"> Contact</i></a></li>
+                                <li><a class="f_link" href="{{ path('app_homepage') }}"><i class="bi bi-house-door" aria-label="Accueil"></i>Accueil</p></a></li>
+                                <li><a class="f_link" href="#"><i class="bi bi-wrench" aria-label="Services"></i>Services</a></li>
+                                <li><a class="f_link" href="#"><i class="bi bi-car-front-fill" aria-label="Occasions"></i>Occasions</a></li>
+                                <li><a class="f_link" href="#"><i class="bi bi-envelope" aria-label="Contact"></i>Contact</a></li>
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <li><a href="{{ path('app_reservation_list') }}"><i class="bi bi-card-list" aria-label="Galerie"> Mon espace</i></a></li>
+                                    <li><a class="f_link" href="#"><i class="bi bi-person" aria-label="Mon espace"></i>Mon espace</a></li>
                                 {% endif %}
                             </ul>
                         </nav>
                     </div>
                     <div class="col">
                         <nav>
-                            <p class="title text-center">Suivez-nous :</p>
+                            <p class="title text-center">Suivez-nous :
                             <ul>
-                                <li><a href="#"><i class="bi bi-facebook" aria-label="Facebook"> Facebook </i></a></li>
-                                <li><a href="#"><i class="bi bi-twitter" aria-label="Twitter"> Twitter </i></a></li>
-                                <li><a href="#"><i class="bi bi-linkedin" aria-label="Linkedin"> Linkedin </i></a></li>
-                                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
-                                       aria-label="Youtube"><i class="bi bi-youtube"> Youtube</i></a></li>
+                                <li><a class="f_link" href="#"><i class="bi bi-facebook" aria-label="Facebook"></i>Facebook</a></li>
+                                <li><a class="f_link" href="#"><i class="bi bi-twitter" aria-label="Twitter"></i>Twitter</a></li>
+                                <li><a class="f_link" href="#"><i class="bi bi-linkedin" aria-label="Linkedin"></i>Linkedin</a></li>
+                                <li><a class="f_link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                                       aria-label="Youtube"><i class="bi bi-youtube"></i>Youtube</a></li>
                             </ul>
                         </nav>
                     </div>

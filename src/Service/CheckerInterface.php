@@ -2,18 +2,30 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+
 class CheckerInterface
 {
+    public function __construct(private CsrfTokenManagerInterface $tokenManager,
+                                private Security $security,
+                                private SessionInterface $session)
+    {
+    }
+
     /**
      * Vérifie si le fichier correspond au critère attendu
      */
     public function checkUploadedFile(array $file, int $maxSize, array $extensions, array $mimeType): bool
     {
-        if (!$this->checkData($file, 'array', ['name', 'full_path', 'type', 'tmp_name', 'error', 'size']))
-            return false;
-        if ($file['size'] > $maxSize)
-            return false;
-        if (!in_array($file['type'], $mimeType, true))
+        if (!$this->checkData($file, 'array', ['name', 'full_path', 'type', 'tmp_name', 'error', 'size']) ||
+            $file['error'] !== 0 ||
+            $file['size'] > $maxSize ||
+            !in_array($file['type'], $mimeType, true)
+        )
             return false;
         $ext = $this->fileGetExtension($file);
         if (!in_array($ext, $extensions))
@@ -25,6 +37,50 @@ class CheckerInterface
     {
         $arr = explode('.', $file['name']);
         return $arr[array_key_last($arr)];
+    }
+
+    /**
+     * Verifier et peux reformater la string selon les regles de securité
+     * @param string $input
+     * @param int $max_len
+     * @return bool
+     */
+    public function checkUserInput(string &$input, int $max_len): bool
+    {
+        if (strlen($input) > $max_len)
+            return false;
+        #TODO: AJOUTER UN NETTOYEUR DE STRING POUR LES FAILLE XSS
+        return true;
+    }
+
+    /**
+     * Verifie si la session correspond un utilisateur connecter et verifie si il a le rôle requi
+     * @param string|null $min_role
+     * @return UserInterface|bool
+     */
+    public function checkUser(string $min_role = null): UserInterface | bool
+    {
+        $user = $this->security->getUser();
+        if (!$user || $min_role && !$this->security->isGranted($min_role))
+            return false;
+        else
+            return $user;
+    }
+
+    /**
+     * Verifie si le token envoyé lors de la requete correspond bien
+     * @param string $csrf_token_id - id du token dans la requete POST
+     * @return bool
+     */
+    public function checkCsrfToken(string $csrf_token_id = 'csrf_token'): bool
+    {
+        if (!isset($_POST[$csrf_token_id]) || !self::checkDataStatic($_POST[$csrf_token_id], 'string') ||
+            !$this->tokenManager->isTokenValid(new CsrfToken($this->session->getId(), $_POST[$csrf_token_id])))
+            return false;
+        else {
+            unset($_POST[$csrf_token_id]);
+            return true;
+        }
     }
 
     /**

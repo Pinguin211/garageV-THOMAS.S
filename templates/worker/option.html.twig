@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Options - GarageV{% endblock %}
+
+{% block body %}
+    <div class="p-lg-4" id="OptionsPage">
+        <div class="bubble p-2" data-controller="optionManagement">
+            <div class="row m-2">
+                <div class="text-start d-lg-inline-flex align-items-center">
+                    <div>
+                        <label for="option_input">Indiquer une option à ajouté</label>
+                        <input type="text" id="option_input" class="form-control" maxlength="{{ max_len }}">
+                    </div>
+                    <div>
+                        <button type="button" class="btn" id="option_add_button">Ajouté</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2 justify-content-center" >
+                <div id="options_list">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="text-end">
+                    <button type="button" class="btn" id="option_delete_button">Supprimer la selection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

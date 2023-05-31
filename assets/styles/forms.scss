@@ -1,0 +1,95 @@
+//VARIABLES
+
+//General
+$selection-color: #41aaea; //Couleur des zone input ou selectionnable
+$selection-color-shadow: rgba(52, 152, 219, 0.2); // Shadow
+$validate-color: #1bad45; // Couleur pour un element valider ou selectionner
+
+//Erreur
+$error-background-color: rgba(232, 72, 72, 0.2); // Couleur du back des messages d'erreurs
+$error-text-color: #E84848; // Couleur des text d'erreurs
+
+//Box
+$box-radius: 3px; // Radiux des box
+$box-shadow:  0 0 4px rgba(0, 0, 0, 0.5); // Shadow des box
+
+
+
+
+//MIXINS
+@mixin form_elem {
+  margin: 0.2em 0;
+  font-size: 1em;
+}
+
+.form-control {
+  @include form_elem;
+  box-shadow: $box-shadow;
+  border-radius: $box-radius;
+  &:focus {
+    border-color: $selection-color;
+    box-shadow: 0 0 0 0.3em $selection-color-shadow;
+  }
+}
+
+.form-label {
+  @include form_elem;
+}
+
+.form-radio {
+  @include form_elem;
+  display: flex;
+  flex-wrap: wrap;
+  input {
+    display: none;
+  }
+
+  label {
+    padding: 0.5em;
+    margin: 0.2em 1em;
+
+    font-weight: 600;
+    font-size: 1.1em;
+
+    border-radius: $box-radius;
+    box-shadow: 0 0.1em 0.1em black;
+    background-color: $selection-color;
+    border: black solid 1px;
+
+    &.selected {
+      background-color: $validate-color;
+      box-shadow: none;
+    }
+  }
+}
+
+.form-row {
+  margin: 1em 0;
+}
+
+.form-first {
+  margin-top: 0;
+}
+
+.form-last {
+  margin-bottom: 0;
+}
+
+.form-error {
+  @include form_elem;
+  color: $error-text-color;
+  font-weight: 600;
+  font-style: italic;
+  ul {
+    margin: 0;
+    list-style: none;
+    background-color: $error-background-color;
+    border: solid 1px $error-text-color;
+    border-radius: $box-radius;
+    padding: 1em;
+    li {
+      margin: 0.3em;
+    }
+  }
+}
+

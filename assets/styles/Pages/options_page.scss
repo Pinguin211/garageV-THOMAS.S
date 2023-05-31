@@ -1,0 +1,25 @@
+@import "../variables";
+
+#OptionsPage {
+
+  #option_input {
+    width: 30vw;
+    margin: 0.5em 5vw 0.5em 0;
+    @media (orientation: portrait) {
+      width: 70%;
+    }
+  }
+
+  .btn {
+    color: black;
+  }
+
+  #option_add_button {
+    background-color: forestgreen;
+  }
+
+  #option_delete_button {
+    background-color: red;
+  }
+
+}

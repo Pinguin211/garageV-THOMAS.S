@@ -12,7 +12,7 @@ else
     else
         die("\nImpossible de hasher le mot de passe\n\n");
     $password = str_replace('$', '\$', $password);
-    $query = 'insert into user(email, password, roles) values (\'admin@admin\', \''.$password.'\', \'[\"ROLE_ADMIN\", \"ROLE_CLIENT\"]\')';
+    $query = 'insert into user(email, password, roles) values (\'admin@admin\', \''.$password.'\', \'[\"ROLE_ADMIN\"]\')';
     exec("php bin/console dbal:run-sql \"$query\"", $out, $code);
     if ($code === 0)
         die("\n SUCCESS !! L'admin à bien était enregistré\n\n");
