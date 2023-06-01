@@ -23,6 +23,12 @@ abstract class EntityController
         $this->entityManager->flush();
     }
 
+    protected function removeObject(mixed $obj): void
+    {
+        $this->entityManager->remove($obj);
+        $this->entityManager->flush();
+    }
+
     protected function addObjectToRemoveList(mixed $obj): void
     {
         $this->entityManager->remove($obj);

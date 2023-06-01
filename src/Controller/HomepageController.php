@@ -22,18 +22,4 @@ class HomepageController extends AbstractController
             'auto' => $auto->getParams(),
         ]);
     }
-
-    #[Route('/test', name: 'app_test')]
-    public function token(CsrfTokenManagerInterface $csrfTokenManager, Request $request,
-                          SessionInterface $session, Security $security): Response
-    {
-        $token = $_POST['token'];
-        $u = $session->getId();
-        $uu = $security->getUser();
-        $t = $request->get('_token');
-
-
-        $b = $csrfTokenManager->isTokenValid(new CsrfToken('hello', $token)) ? 'True' : 'False';
-        return new Response($b, 200);
-    }
 }

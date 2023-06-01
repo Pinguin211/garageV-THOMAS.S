@@ -1,5 +1,5 @@
 import $ from "jquery";
-import {file_request} from "../Request";
+import {file_request} from "../func/Request";
 
 /**
  * Creer un widget pour envoyer un fichiers par une requete ajax

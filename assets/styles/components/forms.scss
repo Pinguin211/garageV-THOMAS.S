@@ -30,6 +30,10 @@ $box-shadow:  0 0 4px rgba(0, 0, 0, 0.5); // Shadow des box
     border-color: $selection-color;
     box-shadow: 0 0 0 0.3em $selection-color-shadow;
   }
+  &.error {
+    border-color: $error-text-color !important;
+    box-shadow: 0 0 0 0.3em $error-background-color !important;
+  }
 }
 
 .form-label {

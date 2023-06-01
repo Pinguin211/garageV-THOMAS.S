@@ -10,21 +10,20 @@
                 <div class="text-start d-lg-inline-flex align-items-center">
                     <div>
                         <label for="option_input">Indiquer une option à ajouté</label>
-                        <input type="text" id="option_input" class="form-control" maxlength="{{ max_len }}">
+                        <input type="text" id="option_input" class="form-control" name="option" maxlength="{{ max_len }}">
                     </div>
                     <div>
-                        <button type="button" class="btn" id="option_add_button">Ajouté</button>
+                        <button type="button" class="btn add-button" id="option_add_button">Ajouté</button>
                     </div>
                 </div>
             </div>
             <div class="row m-2 justify-content-center" >
-                <div id="options_list">
-                    <div class="loader"></div>
+                <div id="options_list" class="selected_list">
                 </div>
             </div>
             <div class="row m-2">
                 <div class="text-end">
-                    <button type="button" class="btn" id="option_delete_button">Supprimer la selection</button>
+                    <button type="button" class="btn remove-button" id="option_delete_button">Supprimer la selection</button>
                 </div>
             </div>
         </div>

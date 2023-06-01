@@ -1,6 +1,6 @@
 import $ from "jquery";
-import {setKeysToString} from "./func/Table";
-import {secureJqueryNodePrint} from "./func/Security";
+import {setKeysToString} from "../func/Table";
+import {secureJqueryNodePrint} from "../func/Security";
 
 /**
  * Creer une liste avec les element sélectionnable par une checkbox
@@ -25,7 +25,7 @@ export class SelectorList {
     }
 
     /**
-     * Renvoie l'élement de la liste
+     * Renvoie la liste sous forme d'elemnt jquery
      *
      * HTML exempe:
      *
@@ -47,7 +47,7 @@ export class SelectorList {
             ul.append(
                 $(`<li class="${this.li_class}" id="${this.li_id + id}">`).append(
                     $('<input type="checkbox">'),
-                    secureJqueryNodePrint('<p>', value[value_name_key])
+                    secureJqueryNodePrint('<p>', value[value_name_key]) // Print securisé contre XSS
                 ))
         })
         this.ids = ids
@@ -78,6 +78,10 @@ export class SelectorList {
         }
     }
 
+    /**
+     * Check les element checkbox avec les id de la list donné
+     * @param ids_to_check - list ids
+     */
     setSelectListCheckbox(ids_to_check) {
         if (this.elem !== undefined) {
             const li_id = this.li_id
@@ -87,5 +91,20 @@ export class SelectorList {
                     $(this).find('input').prop('checked', true)
             })
         }
+    }
+
+    /**
+     * Renvoie la liste des valeurs dans la list
+     */
+    getValueList() {
+        if (this.elem) {
+            let values = []
+            this.elem.find('li').each(function () {
+                values.push($(this).find('p').text())
+            })
+            return values
+        }
+        else
+            return []
     }
 }

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Options - GarageV{% endblock %}
+
+{% block body %}
+    <div class="p-lg-4" id="OptionsPage">
+        <div class="bubble p-2" data-controller="workerManagement">
+            <div class="row m-2">
+                <div class="text-start d-lg-inline-flex align-items-center">
+                    <div>
+                        <label for="email_input">Indiquer un email</label>
+                        <input type="text" name="email" id="email_input" class="form-control" maxlength="{{ max_email_len }}" autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="password_input">Indiquer un mot de passe</label>
+                        <input type="password" name="password" id="password_input" class="form-control" maxlength="{{ max_password_len }}" autocomplete="off">
+                    </div>
+                    <div>
+                        <button type="button" class="btn add-button" id="add_button">Ajouté</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2 justify-content-center" >
+                <div id="worker_list" class="selected_list">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="text-end">
+                    <button type="button" class="btn remove-button" id="delete_button">Supprimer la selection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

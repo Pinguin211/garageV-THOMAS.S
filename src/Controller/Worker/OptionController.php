@@ -56,17 +56,13 @@ class OptionController extends AbstractController
         if (!$checker->checkArrayData($_POST, 'option', 'string'))
             return new Response('Bad request', 403);
         $new_opt = $_POST['option'];
-        if (!$checker->checkUserInput($new_opt, self::MAX_LENGHT_OPTION_NAME))
+        if (!$checker->checkUserInput($new_opt, self::MAX_LENGHT_OPTION_NAME) ||
+            $entityManager->getRepository(Option::class)->findOneBy(['name' => $new_opt]))
             return new Response('Bad request', 403);
 
-        if ($entityManager->getRepository(Option::class)->findOneBy(['name' => $new_opt]))
-            return new Response('1');
-        else
-        {
-            $worker = new Worker($entityManager);
-            $worker->addOptions(new Option($new_opt));
-            return new Response('2');
-        }
+        $worker = new Worker($entityManager);
+        $worker->addOptions(new Option($new_opt));
+        return new Response();
     }
 
     #[Route('/worker/option_delete')]

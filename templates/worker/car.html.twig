@@ -20,7 +20,7 @@
         {{ macro.formRow(form.year, 'form-label', 'form-control', 'form-error') }}
         {{ macro.formRow(form.fuelType, 'form-label', 'form-radio', 'form-error') }}
         {{ macro.formRow(form.options, 'form-label', 'd-none', 'form-error') }}
-        <div id="options_list" data-controller="carForm"></div>
+        <div class="selected_list" id="options_list" data-controller="carForm"></div>
         <div id="images_widget" class="d-flex flex-wrap"></div>
         {{ macro.formRow(form.imagesNames, 'd-none', 'd-none', 'form-error') }}
         <div class="form-last text-center">
