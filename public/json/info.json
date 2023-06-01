@@ -3,63 +3,63 @@
     "timetable": {
         "monday": {
             "day": "closed",
-            "night": "closed"
+            "night": {
+                "open": "13.00",
+                "closed": "19.00"
+            }
         },
         "tuesday": {
             "day": {
-                "open": "11.00",
-                "closed": "15.00"
+                "open": "08.30",
+                "closed": "12.00"
             },
             "night": {
-                "open": "19.00",
-                "closed": "22.00"
+                "open": "13.00",
+                "closed": "19.00"
             }
         },
         "wednesday": {
             "day": {
-                "open": "06.00",
-                "closed": "15.00"
+                "open": "08.30",
+                "closed": "12.00"
             },
             "night": {
-                "open": "19.00",
-                "closed": "22.00"
+                "open": "13.00",
+                "closed": "19.00"
             }
         },
         "thursday": {
             "day": {
-                "open": "11.00",
-                "closed": "15.00"
+                "open": "08.30",
+                "closed": "12.00"
             },
             "night": {
-                "open": "19.00",
-                "closed": "22.00"
+                "open": "13.00",
+                "closed": "19.00"
             }
         },
         "friday": {
             "day": {
-                "open": "11.00",
-                "closed": "15.00"
+                "open": "08.30",
+                "closed": "12.00"
             },
             "night": {
-                "open": "19.00",
-                "closed": "22.00"
+                "open": "13.00",
+                "closed": "19.00"
             }
         },
         "saturday": {
             "day": {
-                "open": "11.00",
-                "closed": "15.00"
+                "open": "08.30",
+                "closed": "12.00"
             },
             "night": {
-                "open": "19.00",
-                "closed": "22.00"
+                "open": "13.00",
+                "closed": "19.00"
             }
         },
         "sunday": {
-            "day": {
-                "open": "11.00",
-                "closed": "15.00"
-            },
+            "day": "closed",
             "night": "closed"
         }
     }

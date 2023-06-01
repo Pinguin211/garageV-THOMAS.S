@@ -1,0 +1,23 @@
+@import "../mixins";
+
+#timetable_page {
+  @include my_box;
+  width: 100% !important;
+  @media (min-width: 992px) {
+    width: 60%;
+  }
+
+  .day-name {
+    font-weight: 600;
+    font-size: 1.3em;
+  }
+
+  .service-name {
+    font-weight: 500;
+  }
+
+  .close-input {
+    width: 1em;
+    height: 1em;
+  }
+}

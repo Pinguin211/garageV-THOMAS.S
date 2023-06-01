@@ -6,7 +6,6 @@ class Session
 {
     private Moment $start;
     private Moment $end;
-    private int $type;
 
     public const KEY_OPEN = 'open';
     public const KEY_CLOSED = 'closed';
@@ -15,11 +14,10 @@ class Session
 
     public const ARR_KEY = [self::KEY_OPEN, self::KEY_CLOSED];
 
-    public function __construct(Moment $start, Moment $end, int $type)
+    public function __construct(Moment $start, Moment $end)
     {
         $this->end = $end;
         $this->start = $start;
-        $this->type = $type;
     }
 
     public static function ConstructSessionByArray(array $info, int $type): Session | false
@@ -29,7 +27,7 @@ class Session
             !isset($info[self::KEY_CLOSED]) || !is_string($info[self::KEY_CLOSED]) ||
                 !($mom_cl = Moment::ConstructSessionByString($info[self::KEY_CLOSED])))
             return false;
-        return new Session($mom_op, $mom_cl, $type);
+        return new Session($mom_op, $mom_cl);
     }
 
     /**
@@ -83,10 +81,5 @@ class Session
             self::KEY_OPEN => $this->getStart()->getMomentToString('.'),
             self::KEY_CLOSED => $this->getEnd()->getMomentToString('.')
         ];
-    }
-
-    public function getType(): int
-    {
-        return $this->type;
     }
 }
