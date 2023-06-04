@@ -21,6 +21,16 @@
         {{ macro.formRow(form.fuelType, 'form-label', 'form-radio', 'form-error') }}
         {{ macro.formRow(form.options, 'form-label', 'd-none', 'form-error') }}
         <div class="selected_list" id="options_list" data-controller="carForm"></div>
+        <div class="m-3 text-end">
+            <a href="{{ path('app_worker_option') }}" target="_blank">
+                <i class="bi bi-box-arrow-in-up-left"></i>
+                Ajouté jouter des options
+            </a>
+        </div>
+        <div class="info_img m-3">
+            <i class="bi bi-info-circle"></i>
+            La taille de l'image ne doit pas dépasser 2mo et doit etre au format .jpg ou .png
+        </div>
         <div id="images_widget" class="d-flex flex-wrap"></div>
         {{ macro.formRow(form.imagesNames, 'd-none', 'd-none', 'form-error') }}
         <div class="form-last text-center">
