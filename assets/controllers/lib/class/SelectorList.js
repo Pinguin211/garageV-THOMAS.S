@@ -8,14 +8,14 @@ import {secureJqueryNodePrint} from "../func/Security";
 export class SelectorList {
 
     /**
-     * @param arr - Exemple : {1: 'Pomme', 2: 'Poire', 3: 'Ananas'}
+     * @param arr - Exemple : {1: {id: 23, 'name': 'Pomme'}, {id: 34, 'name': 'Poire'}, {id: 45, 'name': 'Ananas'}}
      * @param ul_id - ID de la liste
      * @param li_id - Base de l'ID de la ligne, l'id est completé par la clé de ${arr}
      * @param ul_class - class pour ul
      * @param li_class - class pour li
      */
     constructor(arr, ul_class = '', li_class = '', ul_id = 'SelectorList', li_id = 'SelectorLine_') {
-        this.arr = setKeysToString(arr)
+        this.arr = arr
         this.ids = []
         this.ul_id = ul_id
         this.li_id = li_id

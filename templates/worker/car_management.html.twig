@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Gestion des annonces - GarageV{% endblock %}
+
+{% block body %}
+    <div class="p-lg-4 management_page" id="carManagement">
+        <div class="bubble p-2" data-controller="carManagement">
+            <div class="d-flex flex-column m-4">
+                <a href="{{ path('app_worker_car') }}" target="_blank"><i class="bi bi-box-arrow-in-up-right me-2"></i>Ajouter une voiture</a>
+            </div>
+            <div class="row m-2 justify-content-center" >
+                <div id="table_list" class="selected_table">
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="text-end">
+                    <button type="button" class="btn remove-button" id="cars_delete_button">Supprimer la selection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

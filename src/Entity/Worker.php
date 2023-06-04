@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\PathInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class Worker extends EntityController
@@ -25,5 +26,13 @@ class Worker extends EntityController
     public function addOptionToRemoveList(Option $option)
     {
         $this->addObjectToRemoveList($option);
+    }
+
+    public function addCarToRemoveList(Car $car, PathInterface $path)
+    {
+        $names = $car->getImagesNames();
+        foreach ($names as $name)
+            unlink($path->getCarImagesDirPath() . $name);
+        $this->addObjectToRemoveList($car);
     }
 }
