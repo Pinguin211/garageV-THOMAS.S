@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macro %}
+
+{% if mod %}
+{% set opt = 'Modifié'%}
+{% else %}
+{% set opt = 'Ajouté'%}
+{% endif %}
+
+
+{% block title %}{{ opt }} un service{% endblock %}
+
+{% block body %}
+    <div id="AddServicePage" data-controller="serviceForm">
+        {% set form_id = 'form_service' %}
+        {{ form_start(form, {'attr': {'class': 'form-control', 'id': form_id, 'enctype': 'multipart/form-data', 'data-controller': 'myForm'}}) }}
+        {{ macro.formRow(form.name, 'form-label', 'form-control', 'form-error', 'form_first') }}
+        {{ macro.formRow(form.list, 'form-label', 'form-collection-choice', 'form-error', null, 'service_list_row') }}
+        <div class="info_img m-3">
+            <i class="bi bi-info-circle"></i>
+            La taille de l'image ne doit pas dépasser 2mo et doit etre au format .jpg ou .png
+        </div>
+        <div id="images_widget"></div>
+        {{ macro.formRow(form.imageName, 'd-none', 'd-none', 'form-error') }}
+        <div class="text-center">
+            <button type="submit" class="btn">{{ opt }}</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

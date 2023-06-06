@@ -38,9 +38,9 @@
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <a href="{{ path('app_worker') }}" class="m-2"><i class="bi bi-people me-1"></i>Gestion des employés</a>
                                     <a href="{{ path('app_timetable') }}" class="m-2"><i class="bi bi-clock me-1"></i>Gestion des horaires</a>
+                                    <a href="{{ path('app_admin_service_management') }}" class="m-2"><i class="bi bi-wrench me-1"></i>Gestion des services</a>
                                 {% endif %}
-                                    <a href="#" class="m-2"><i class="bi bi-car-front me-1"></i>Gestion des voitures</a>
-                                    <a href="#" class="m-2"><i class="bi bi-wrench me-1"></i>Gestion des services</a>
+                                    <a href="{{ path('app_car_management') }}" class="m-2"><i class="bi bi-car-front me-1"></i>Gestion des voitures</a>
                                     <a href="#" class="m-2"><i class="bi bi-list-stars me-1"></i>Gestion des avis clients</a>
                                 </div>
                                 <hr>

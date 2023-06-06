@@ -1,3 +1,5 @@
+@import "../mixins";
+
 //VARIABLES
 
 //General
@@ -21,6 +23,8 @@ $box-shadow:  0 0 4px rgba(0, 0, 0, 0.5); // Shadow des box
   margin: 0.2em 0;
   font-size: 1em;
 }
+
+// CLASSE
 
 .form-control {
   @include form_elem;
@@ -68,6 +72,39 @@ $box-shadow:  0 0 4px rgba(0, 0, 0, 0.5); // Shadow des box
   }
 }
 
+.form-collection-choice {
+  div {
+    width: 100%;
+
+    button {
+      background-color: $error-background-color;
+      color: $error-text-color;
+      box-shadow: $box-shadow;
+      border-radius: $box-radius;
+      border: none;
+    }
+
+    input {
+      width: 70%;
+      box-shadow: $box-shadow;
+      border-radius: $box-radius;
+      border: none;
+      @include form_elem;
+    }
+
+    label {
+      display: none;
+    }
+  }
+}
+button#form_collection_choice_add_button {
+  background-color: $selection-color-shadow;
+  color: $selection-color;
+  box-shadow: $box-shadow;
+  border-radius: $box-radius;
+  border: none;
+}
+
 .form-row {
   margin: 1em 0;
 }
@@ -96,5 +133,53 @@ $box-shadow:  0 0 4px rgba(0, 0, 0, 0.5); // Shadow des box
       margin: 0.3em;
     }
   }
+}
+
+#images_widget {
+
+  .add-img {
+    margin: 1em 1.5em;
+    width: 12em;
+    height: 7em;
+    border: black solid 1px;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    svg {
+      width: 60%;
+      height: 60%;
+      cursor: pointer;
+      fill: $selection-color;
+      opacity: 0.7;
+      transition: 300ms ease;
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      @include circle_cross
+    }
+  }
+}
+
+.info_img {
+  color: $selection-color;
+  font-weight: 300;
+  font-style: italic;
 }
 

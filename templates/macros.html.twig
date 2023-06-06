@@ -121,8 +121,8 @@
 {% endmacro %}
 
 {# FORMULAIRE #}
-{% macro formRow(form_part, label_class, widget_class, errors_class, class) %}
-    <div class="form-row {{ class }}">
+{% macro formRow(form_part, label_class, widget_class, errors_class, class, id) %}
+    <div class="form-row{% if class %} {{ class }}{% endif %}" {% if id %}id="{{ id }}"{% endif %}>
         {{ form_label(form_part, null,{'label_attr': {'class': label_class}}) }}
         {{ form_widget(form_part, {'attr': {'class': widget_class}}) }}
         <div class="{{ errors_class }}">
@@ -130,3 +130,4 @@
         </div>
     </div>
 {% endmacro %}
+

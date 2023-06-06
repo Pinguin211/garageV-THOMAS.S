@@ -41,6 +41,11 @@ class PathInterface
         return $this->getPath('getImagesDirPath', 'occasions/', $create_path);
     }
 
+    public function getServicesImagesDirPath(bool $create_path = true): string
+    {
+        return $this->getPath('getImagesDirPath', 'services/', $create_path);
+    }
+
     //PARTIE FICHIER
 
     public function getInfoFilePath(): string

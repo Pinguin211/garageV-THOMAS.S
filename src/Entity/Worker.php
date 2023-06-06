@@ -35,4 +35,17 @@ class Worker extends EntityController
             unlink($path->getCarImagesDirPath() . $name);
         $this->addObjectToRemoveList($car);
     }
+
+    public function addServiceToRemoveList(Service $service, PathInterface $path)
+    {
+        $name = $service->getImageName();
+        if ($name)
+            unlink($path->getServicesImagesDirPath() . $name);
+        $this->addObjectToRemoveList($service);
+    }
+
+    public function addService(Service $service)
+    {
+        $this->pushObject($service);
+    }
 }
