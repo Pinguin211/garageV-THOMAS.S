@@ -144,6 +144,13 @@ class Car
         return $this;
     }
 
+    public function setOptions(ArrayCollection|array $options): void
+    {
+        if (is_array($options))
+            $options = new ArrayCollection($options);
+        $this->options = $options;
+    }
+
     public function removeOption(Option $option): self
     {
         $this->options->removeElement($option);

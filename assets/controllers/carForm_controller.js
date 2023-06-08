@@ -2,9 +2,9 @@ import {Controller} from '@hotwired/stimulus';
 import $ from 'jquery'
 import {SelectorList} from "./lib/class/SelectorList";
 import {request} from "./lib/func/Request";
-import {SendImage} from "./lib/class/SendImage";
 import {getSvgPhoto} from "./lib/func/SvgElement";
-import {createNotification} from "./lib/func/Notification";
+import {InputImage} from "./lib/class/InputImage";
+import {getUrlParams} from "./lib/func/Url";
 
 
 export default class extends Controller {
@@ -13,25 +13,18 @@ export default class extends Controller {
     list = undefined
 
 
-    //Widgets des images
-
+    //WidgetImages
+    NB_WIDGETS = 5
+    widgets = {}
 
     connect() {
-        this.getList() // recupere la liste des options
-        this.setFormAction() // Ajoute les event pour lier la liste des options au formulaire
 
-       const senders = {
-        "1": this.AddImageWidget(1), // Ajoute le widgets pour l'ajouts des images
-        "2": this.AddImageWidget(2), // Ajoute le widgets pour l'ajouts des images
-        "3": this.AddImageWidget(3), // Ajoute le widgets pour l'ajouts des images
-        "4": this.AddImageWidget(4), // Ajoute le widgets pour l'ajouts des images
-        "5": this.AddImageWidget(5), // Ajoute le widgets pour l'ajouts des images
-        }
+        $(document).ready(() => {
+            this.getList() // recupere la liste des options
+            this.setFormAction() // Ajoute les event pour lier la liste des options au formulaire
+            this.setImageWidget()
+        })
 
-        const params = getUrlParams();
-        if (params.hasOwnProperty('id')) {
-            setActualMiniature(params.id, senders)
-        }
     }
 
     //Liste des option
@@ -74,26 +67,35 @@ export default class extends Controller {
 
     // Widgets des images
 
-    AddImageWidget(place = 1) {
-        const sender = new SendImage('',
+    setImageWidget() {
+        for (let i = 1; i <= this.NB_WIDGETS; i++) {
+            this.AddImageWidget(i.toString())
+        }
+
+        request(
+            '/worker/get_car_image_path',
+            {'id': getUrlParams()['id']},
+            'json'
+        )
+            .then(response => {
+                $.each(response, (key, name) => {
+                    const widget = this.widgets[key]
+                    const url = '/images/occasions/' + name
+                    widget.showMiniatureImageByUrl(url, name)
+                })
+            })
+
+    }
+
+    AddImageWidget(place) {
+        const inputImage = new InputImage(
             `image_${place}`,
+            '<div class="overlay"></div>',
             getSvgPhoto(),
             'class="add-img"'
         )
-        const overlay = getOverlayElement(sender)
-        sender.input.on('change', function () {
-            if (sender.checkFile()) {
-                sender.div.addClass('charged')
-                sender.showMiniatureImage(overlay)
-            }
-            else if (sender.input.val() !== '')
-            {
-                createNotification('L\'image n\'est pas au bon format')
-                sender.removeFile()
-            }
-        })
-        $('#images_widget').append(sender.getElem())
-        return sender
+        $('#images_widget').append(inputImage.getElem())
+        this.widgets[place] = inputImage
     }
 }
 
@@ -118,48 +120,4 @@ function getCheckedOptionForm() {
             arr.push($(this).val())
     })
     return arr
-}
-
-function getOverlayElement(sender)
-{
-    const overlay = $('<div class="overlay">')
-    overlay.on('click', function () {
-        if (sender.div.attr('class').includes('charged')) {
-            sender.div.removeClass('charged')
-            sender.removeImage()
-        }
-    })
-    return overlay
-}
-
-function setActualMiniature(id, senders) {
-    request(
-        '/worker/get_car_image_path',
-        {'id': id},
-        'json'
-    )
-        .then(response => {
-            $.each(response, function (key, name) {
-                const sender = senders[key]
-                const url = '/images/occasions/' + name
-                sender.showMiniatureImageByUrl(url,  getOverlayElement(sender))
-                sender.div.addClass('charged')
-                const data = new DataTransfer()
-                data.items.add(new File([], name, { type: 'image/png' }))
-                sender.input.prop('files', data.files)
-            })
-        })
-}
-
-//Recupere les parametres dans la barre d'adresse
-function getUrlParams() {
-    let params = {};
-    const search = window.location.search.substring(1);
-    let vars = search.split('&');
-    for (let i = 0; i < vars.length; i++) {
-        const pair = vars[i].split('=');
-        const key = decodeURIComponent(pair[0]);
-        params[key] = decodeURIComponent(pair[1]);
-    }
-    return params;
 }

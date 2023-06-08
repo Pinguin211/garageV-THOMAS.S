@@ -31,7 +31,8 @@ class CarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $date = new \DateTime();
-        $year = (int)$date->format('YY');
+        $year = (int)$date->format('YY'); // Anné maximum de la voiture
+
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre de l\'annonces :',
@@ -68,6 +69,11 @@ class CarType extends AbstractType
                     'multiple' => true,
                     'expanded' => true
                 ])
+            ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
+                $car = $event->getData();
+                $form = $event->getForm();
+                $this->setOptionsData($car, $form);
+            })
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 $car = $event->getData();
                 $form = $event->getForm();
@@ -87,11 +93,23 @@ class CarType extends AbstractType
         return $choices;
     }
 
+    //Set les options deja presente dans le vehicule sur true
+    private function setOptionsData(Car $car, FormInterface $form)
+    {
+        $data = [];
+        foreach ($car->getOptions() as $option) {
+            $data[] = $option->getId();
+        }
+        $form->get('options')->setData($data);
+    }
+
     //Ajoute les options de la voiture selon le formulaire
     private function setCarOptions(Car $car, FormInterface $form) {
         $ids = $form->get('options')->getData();
+        $options = [];
         foreach ($ids as $id)
-            $car->addOption($this->entityManager->getRepository(Option::class)->findOneBy(['id' => $id]));
+            $options[] = $this->entityManager->getRepository(Option::class)->findOneBy(['id' => $id]);
+        $car->setOptions($options);
     }
 
     //Ajoute les images upload sur le serveur, et ajoute leurs nom dans l'objet
