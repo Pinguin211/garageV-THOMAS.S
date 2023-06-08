@@ -35,9 +35,9 @@ class CommentController extends AbstractController
             !$checker->checkData($_POST, 'array', ['poster', 'comment', 'note']) ||
             !$checker->checkData($_POST['note'], 'numeric') ||
             !$checker->checkData($_POST['poster'], 'string') ||
-            !$checker->checkUserInput($_POST['poster'], 100) ||
+            !$checker->checkUserInput($_POST['poster'], 110) ||
             !$checker->checkData($_POST['comment'], 'string') ||
-            !$checker->checkUserInput($_POST['comment'], 100)
+            !$checker->checkUserInput($_POST['comment'], 110)
         )
             return new Response('Bad request', 401);
 
