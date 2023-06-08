@@ -131,3 +131,26 @@
     </div>
 {% endmacro %}
 
+
+{# FORMULAIRE AJOUTE AVIS CLIENT #}
+{% macro CommentForm() %}
+    <form id="addComment" data-controller="addComment">
+        <div class="form-row">
+            <label for="comment_star_rate_value" class="form-label">Donner une note:</label>
+            <input type="hidden" id="comment_star_rate_value">
+            <div id="comment_star_rate"></div>
+        </div>
+        <div class="form-row">
+            <label for="comment_name" class="form-label">Saisissez un nom :</label>
+            <input type="text" id="comment_name" class="form-control" maxlength="100" {% if app.user %}value="{{ app.user.email }}"{% endif %}>
+        </div>
+        <div class="form-row">
+            <label for="comment_text" class="form-label">Saisissez votre avis :</label>
+            <textarea id="comment_text" class="form-control" maxlength="100"></textarea>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn" id="comment_submit">Laisser un avis</button>
+        </div>
+    </form>
+{% endmacro %}
+

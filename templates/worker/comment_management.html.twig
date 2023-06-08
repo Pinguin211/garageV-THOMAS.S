@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macro %}
+
+
+{% block title %}Gestion des avis - GarageV{% endblock %}
+
+{% block body %}
+    <div class="p-lg-4">
+        <div class="bubble p-2 d-flex flex-column flex-lg-row" id="commentManagement" data-controller="commentManager">
+            <div class="p-2">
+                {{ macro.CommentForm }}
+            </div>
+            <div class="w-100 p-2">
+                <div class="d-flex flex-row justify-content-around p-2">
+                    <div class="comment_filter">
+                        <label for="validate_comment">Commentaire validé</label>
+                        <input type="checkbox" id="validate_comment">
+                    </div>
+                    <div class="comment_filter">
+                        <label for="unvalidate_comment">Commentaire non validé</label>
+                        <input type="checkbox" id="unvalidate_comment">
+                    </div>
+                </div>
+                <div id="table_list" class="selected_table">
+                </div>
+                <div class="d-flex flex-row justify-content-around p-2">
+                    <button type="button" class="btn" id="valid_comment">Validé</button>
+                    <button type="button" class="btn" id="unvalid_comment">Invalidé</button>
+                    <button type="button" class="btn" id="remove_comment">Supprimé</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

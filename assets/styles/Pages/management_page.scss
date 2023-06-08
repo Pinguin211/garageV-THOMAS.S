@@ -23,3 +23,38 @@
   }
 
 }
+
+#commentManagement {
+
+  .btn {
+    color: black;
+  }
+
+  #valid_comment {
+    background-color: green;
+  }
+
+  #unvalid_comment {
+    background-color: darkorange;
+  }
+
+  #remove_comment {
+    background-color: red;
+  }
+
+  .comment_filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    label {
+      font-weight: 500;
+      margin-right: 0.5em;
+    }
+
+    input {
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

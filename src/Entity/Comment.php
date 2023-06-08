@@ -29,6 +29,15 @@ class Comment
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    public function __construct(int $note, string $posterName, string $comment, bool $validated, \DateTime $date)
+    {
+        $this->note = $note;
+        $this->posterName = $posterName;
+        $this->comment = $comment;
+        $this->validated = $validated;
+        $this->date = $date;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

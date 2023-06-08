@@ -22,6 +22,14 @@ export class TableManagement {
          * @type {array}
          */
         this.value_name_keys = []
+        /**
+         * Fonction à realiser pour set le data à envoyé lors de la recuperations des données
+         * @type {function}
+         * @return {} - Doit retourner un dictionnaire
+         */
+        this.data_func = undefined
+
+        this.buttons = []
 
         /* Ajouter un thead */
         this.thead = false
@@ -35,7 +43,8 @@ export class TableManagement {
     getList() {
         if (this.loader)
             this.table_elem.append(this.loader)
-        request(this.url, {}, 'json')
+        const data = this.data_func ? this.data_func() : {}
+        request(this.url, data, 'json')
             .then(response => {
                 this.table = new SelectorTable(response)
                 this.table.values_keys = this.value_name_keys
@@ -78,6 +87,9 @@ export class TableManagement {
             this.add_button.prop('disabled', true)
         if (this.delete_button !== undefined)
             this.delete_button.prop('disabled', true)
+        this.buttons.forEach(() => {
+            $(this).prop('disabled', true)
+        })
     }
 
     activateButton() {
@@ -85,6 +97,9 @@ export class TableManagement {
             this.add_button.prop('disabled', false)
         if (this.delete_button !== undefined)
             this.delete_button.prop('disabled', false)
+        this.buttons.forEach(() => {
+            $(this).prop('disabled', false)
+        })
     }
 
     /**
@@ -152,6 +167,30 @@ export class TableManagement {
             }
         })
         this.delete_button = delete_button_elem
+    }
+
+    addRequestButtonIds(button_elem, sendUrl, data_name, then_message, no_selection_message) {
+        button_elem.on('click', () => {
+            this.desactiveButton()
+            const check_list = this.table.getSelectTable()
+            if (check_list.length > 0) {
+                request(sendUrl, {[data_name]: check_list})
+                    .then(() => {
+                        createNotification(then_message)
+                        this.getList()
+                    })
+                    .catch(error => {
+                        createNotification(error)
+                    })
+                    .finally(() => {
+                        this.activateButton()
+                    })
+            } else {
+                createNotification(no_selection_message)
+                this.activateButton()
+            }
+        })
+        this.delete_button = button_elem
     }
 
 }

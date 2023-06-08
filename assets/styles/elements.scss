@@ -102,3 +102,10 @@ a {
   font-size: 2em;
   cursor: pointer;
 }
+
+#addComment {
+  .btn {
+    color: white !important;
+    background-color: $alert-color;
+  }
+}
