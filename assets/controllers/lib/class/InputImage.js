@@ -8,6 +8,11 @@ export class InputImage extends InputFile{
         this.illustrator = illustrator
         this.delete_overlay_selector = delete_overlay_selector
         this.div = $(`<div ${div_attr}>`)
+        /**
+         * Fonction qui sera realiser si l'image ajouté ne convient pas
+         * @type {function}
+         */
+        this.alert_func = undefined
     }
 
     getElem() {
@@ -17,7 +22,13 @@ export class InputImage extends InputFile{
             const input = this.input
             input.attr('hidden', true)
             input.on('change', () => {
-                this.showMiniatureImage()
+                if (this.checkFile())
+                    this.showMiniatureImage()
+                else {
+                    if (this.alert_func)
+                        this.alert_func()
+                    this.removeImage()
+                }
             })
             this.illustrator.on('click', function () {
                 input.click()

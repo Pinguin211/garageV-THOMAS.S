@@ -5,6 +5,7 @@ import {InputImage} from "./lib/class/InputImage";
 import {getSvgPhoto} from "./lib/func/SvgElement";
 import {getUrlParams} from "./lib/func/Url";
 import {request} from "./lib/func/Request";
+import {createNotification} from "./lib/func/Notification";
 
 export default class extends Controller {
 
@@ -29,6 +30,11 @@ export default class extends Controller {
             'class="add-img"'
             )
         $('#images_widget').append(inputImage.getElem())
+
+        inputImage.alert_func = () => {
+            createNotification('Le format de l\'image est invalide' )
+        }
+
 
         const id = getUrlParams()['id']
         if (id)
