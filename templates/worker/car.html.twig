@@ -11,7 +11,7 @@
 {% block title %}{{ opt }} un véhicule{% endblock %}
 
 {% block body %}
-    <div id="AddCarPage">
+    <div class="form-page">
         {% set form_id = 'form_car' %}
         {{ form_start(form, {'attr': {'class': 'form-control', 'id': form_id, 'enctype': 'multipart/form-data', 'data-controller': 'myForm'}}) }}
         {{ macro.formRow(form.title, 'form-label', 'form-control', 'form-error', 'form_first') }}

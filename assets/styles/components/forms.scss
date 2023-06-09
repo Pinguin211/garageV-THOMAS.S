@@ -26,6 +26,19 @@ $box-shadow:  0 0 4px rgba(0, 0, 0, 0.5); // Shadow des box
 
 // CLASSE
 
+
+.form-page {
+  @media (orientation: landscape) {
+    @include my_box;
+    width: 60%;
+    margin: 0 auto;
+  }
+  @media (max-width: 992px) {
+    width: 100%;
+  }
+}
+
+
 .form-control {
   @include form_elem;
   box-shadow: $box-shadow;

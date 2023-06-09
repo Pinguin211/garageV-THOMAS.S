@@ -11,7 +11,7 @@
 {% block title %}{{ opt }} un service{% endblock %}
 
 {% block body %}
-    <div id="AddServicePage" data-controller="serviceForm">
+    <div class="form-page" id="AddServicePage" data-controller="serviceForm">
         {% set form_id = 'form_service' %}
         {{ form_start(form, {'attr': {'class': 'form-control', 'id': form_id, 'enctype': 'multipart/form-data', 'data-controller': 'myForm'}}) }}
         {{ macro.formRow(form.name, 'form-label', 'form-control', 'form-error', 'form_first') }}
