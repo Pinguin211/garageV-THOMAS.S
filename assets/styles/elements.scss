@@ -109,3 +109,11 @@ a {
     background-color: $alert-color;
   }
 }
+
+.information {
+  @include my_bubble;
+  text-align: center;
+  font-weight: 500;
+  padding: 0.7em;
+  background-color: $impact-color;
+}

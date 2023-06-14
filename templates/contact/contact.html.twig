@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macro %}
+
+
+{% block title %}Contact - GarageV{% endblock %}
+
+{% block body %}
+    <div class="pt-lg-1">
+        <div class="m-lg-5">
+            {{ macro.ContactForm(form, 'contact_form') }}
+        </div>
+    </div>
+{% endblock %}

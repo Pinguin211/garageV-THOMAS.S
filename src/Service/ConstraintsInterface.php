@@ -3,10 +3,12 @@
 namespace App\Service;
 
 
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Type;
 
 class ConstraintsInterface
@@ -46,5 +48,20 @@ class ConstraintsInterface
                 'minMessage' => "$subject doit contenir au moins $min_len caractères",
                 'maxMessage' => "$subject doit contenir au maximum $max_len caractères",
             ])]);
+    }
+
+    public static function PhoneConstraint(string $subject): array
+    {
+        return [new Regex(
+            "/^\d{10}$/",
+            "$subject n'est pas dans le bon format"
+        )];
+    }
+
+    public static function EmailConstraint(string $subject): array
+    {
+        return [
+            new Email(["message" => "$subject n'est pas valide"])
+        ];
     }
 }
