@@ -56,6 +56,7 @@ export class SelectorTable {
             tr.append(td_input)
 
             this.values_keys.forEach(function (key) {
+                console.log(key)
                 tr.append(secureJqueryNodePrint('<td>', value[key]))
             })
             this.sup_cols.forEach(function (func) {
