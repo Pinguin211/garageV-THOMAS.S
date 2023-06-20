@@ -4,7 +4,8 @@
   --navbar-height: 10vh; // Hauteur de la navbar
   --text-font-size: 12px; // Taille de texte par defaut
   --title-font-size: 16px; // Taille de titre par defaut
-  --headpiece-width: 300px; // Taille des affiche des occasion et des service
+  --headpiece-width: 200px; // Taille des affiche des occasion et des service
+  --car-page-carousel-width: 50vw; // Taille de l'image sur la page des voiture occasions
 }
 
 @media (min-width: 992px) {
@@ -34,6 +35,7 @@
       --text-font-size: 30px; // Taille de texte par defaut
       --title-font-size: 38px; // Taille de titre par defaut
       --headpiece-width: 90vw; // Taille des affiche des occasion et des service
+      --car-page-carousel-width: 90vw; // Taille de l'image sur la page des voiture occasions
     }
   }
 
@@ -43,6 +45,7 @@
       --text-font-size: 20px; // Taille de texte par defaut
       --title-font-size: 26px; // Taille de titre par defaut
       --headpiece-width: 30vw; // Taille des affiche des occasion et des service
+      --car-page-carousel-width: 90vw; // Taille de l'image sur la page des voiture occasions
     }
 
   }
@@ -91,4 +94,9 @@ $footer-color: $secondary-color;
 //ELEMENTS
 
 //Headpiece
-$headpiece-width: var(--headpiece-width)
+$headpiece-width: var(--headpiece-width);
+
+
+//Pages
+//Car_pages
+$car-page-carousel-width: var(--car-page-carousel-width);

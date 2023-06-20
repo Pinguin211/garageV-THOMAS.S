@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macro %}
+
+
+{% block title %}{{ car.getTitle }}{% endblock %}
+
+{% block body %}
+    <div id="car_page" class="m-5 pt-4">
+        <div class="d-flex flex-column flex-lg-row mb-3">
+            <div id="carousel">
+                {{ _self.carCaroussel(car) }}
+            </div>
+            <div id="car_info" class="d-flex flex-column">
+                <div id="info" class="bubble headpiece mb-2 p-2 w-100">
+                    {{ macro.carContentHeadpiece(car) }}
+                </div>
+                <div id="options" class="bubble headpiece p-2 w-100">
+                    {{ _self.carOptions(car) }}
+                </div>
+            </div>
+        </div>
+        <div>
+            {{ macro.ContactForm(form, 'contact_form') }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% macro carCaroussel(car) %}
+    <div id="headpieceCarrouselControls{{ car.getId }}" class="carousel slide" data-bs-ride="carousel"
+         data-bs-interval="20000">
+        <div class="carousel-inner">
+            {% if car.getImagesNames | length < 1 %}
+                <div class="carousel-item active">
+                    <img src="{{ asset('images/unknow.jpg') }}" alt="No image">
+                </div>
+            {% else %}
+                {% set i = 0 %}
+                {% for name in car.getImagesNames %}
+                    <div class="carousel-item{% if i == 0 %} active{% endif %}">
+                        <img src="{{ asset('images/occasions/' ~ name) }}" alt="image {{ i + 1 }}">
+                    </div>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#headpieceCarrouselControls{{ car.getId }}"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#headpieceCarrouselControls{{ car.getId }}"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+{% endmacro %}
+
+{% macro carOptions(car) %}
+    <div id="car-content-headpiece">
+        <div class="title">Equipements : </div>
+        <ul>
+            {% for option in car.getOptions %}
+                <li class="car-content-headpiece-info">{{ option.getName }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}

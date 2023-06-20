@@ -1,0 +1,45 @@
+@import "../mixins";
+@import "../variables";
+
+
+#car_page {
+
+  $car-page-carousel-height: calc(#{$car-page-carousel-width} * 0.7);
+
+  #carousel {
+    width: $car-page-carousel-width;
+    height: $car-page-carousel-height;
+    border: solid black 1px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img, .carousel-item, .carousel, .carousel-inner {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  #car_info {
+    width: 90vw;
+    height: $car-page-carousel-height;
+    @media (min-width: 992px) {
+      $margin: 3vw;
+      $width: calc(100vw - #{$margin} - #{$car-page-carousel-width});
+      width: $width;
+      margin-left: $margin;
+    }
+
+    #info {
+      height: 12em;
+    }
+
+    #options {
+      height: calc(#{$car-page-carousel-height} - 12em);
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  }
+
+}
+

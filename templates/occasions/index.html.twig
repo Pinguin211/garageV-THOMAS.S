@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Occasions{% endblock %}
+
+{% block body %}
+    <div id="occasions_page" data-controller="occasions">
+        <div id="parent_bar">
+            <div id="filter_bar">
+                <div id="search">
+                    <div class="filter_interact search">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="form-control" id="search_title">
+                    </div>
+                </div>
+                <div class="collapse" id="collapsibleFilter">
+                    <div id="other">
+                        <button type="button" class="btn filter_interact other" data-bs-toggle="dropdown" aria-expanded="false">
+                            PRIX
+                            <i class="bi bi-chevron-compact-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end bubble p-lg-2">
+                            <div class="d-lg-none">Prix :</div>
+                            {{ _self.number_filter('min_price', 'max_price', min_price, max_price, 100) }}
+                        </ul>
+                        <button class="btn filter_interact other" data-bs-toggle="dropdown" aria-expanded="false">
+                            KILOMETRAGE
+                            <i class="bi bi-chevron-compact-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end bubble p-lg-2">
+                            <div class="d-lg-none">Kilometres :</div>
+                            {{ _self.number_filter('min_klm', 'max_klm', min_klm, max_klm, 1000) }}
+                        </ul>
+                        <button class="btn filter_interact other" data-bs-toggle="dropdown" aria-expanded="false">
+                            ANNEE
+                            <i class="bi bi-chevron-compact-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end bubble p-lg-2">
+                        <div class="d-lg-none">Année :</div>
+                            {{ _self.number_filter('min_year', 'max_year', min_year, max_year, 1) }}
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <div id="button" class="flex-grow-1">
+                        <button type="button" class="btn w-100" id="refresh_button">ACTUALISER</button>
+                    </div>
+                    <button id="collapse_button" class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleFilter">
+                        <i class="bi bi-caret-down-square-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="car_list" class="d-flex flex-wrap justify-content-center mx-4">
+        </div>
+    </div>
+{% endblock %}
+
+
+{% macro number_filter(min_id, max_id, min, max, step) %}
+    {% set min = min - step %}
+    {% set max = max + step %}
+    <div class="form-row">
+        <div class="d-flex flex-row align-items-center">
+            <label id="label_{{ min_id }}" for="{{ min_id }}" class="form-label">Min :</label>
+            <div id="show_{{ min_id }}" class="ms-2"></div>
+        </div>
+        <input type="range" class="form-range" min="{{ min }}" max="{{ max }}" id="{{ min_id }}" step="{{ step }}" value="{{ min }}">
+    </div>
+    <div class="form-row">
+        <div class="d-flex flex-row align-items-center">
+            <label id="label_{{ max_id }}" for="{{ max_id }}" class="form-label">Max :</label>
+            <div id="show_{{ max_id }}" class="ms-2"></div>
+        </div>
+        <input type="range" class="form-range" min="{{ min }}" max="{{ max }}" id="{{ max_id }}" step="{{ step }}" value="{{ max }}">
+    </div>
+{% endmacro %}

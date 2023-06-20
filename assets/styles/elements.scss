@@ -22,6 +22,9 @@
   font-size: 1.3em;
   font-family: Rajdhanin, sans-serif;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .box {
@@ -47,6 +50,7 @@ a {
   #headpiece-image {
     width: 100%;
     height: calc(#{$headpiece-width} * 0.5);
+
     img {
       width: 100%;
       height: 100%;
