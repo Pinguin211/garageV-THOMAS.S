@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% import 'macros.html.twig' as macro %}
+
+
+{% block title %}Services{% endblock %}
+
+{% block body %}
+    <div id="services_page">
+        <div class="d-flex flex-wrap p-4 justify-content-center">
+            {% for service in services %}
+                <div class="p-4">
+                    {{ macro.Headpiece(
+                        'images/services/' ~ service.getImageName,
+                        'image ' ~ service.getName,
+                        _self.serviceContent(service),
+                        'Demandé un devis',
+                        path('app_contact') ~ '?message=Sujet ' ~ service.getName
+                    ) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% macro serviceContent(service) %}
+    <div id="car-content-headpiece">
+        <div class="title text-center">
+            {{ service.getName }}
+        </div>
+        <ul class="ps-0" style="height: 10em;overflow-y: scroll">
+            {% for item in service.getList %}
+                <li class="car-content-headpiece-info list-unstyled text-start">
+                    <a href="{{ path('app_contact') }}?message=Sujet {{ service.getName }} - {{ item }}">{{ item }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}

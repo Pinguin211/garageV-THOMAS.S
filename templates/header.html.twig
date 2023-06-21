@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse{% if auto.login.error is defined and auto.login.error %} show{% endif %}" id="collapsibleNavbar">
             <ul id="navigation" class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href=""><h1>Services</h1></a>
+                    <a class="nav-link" href="{{ path('app_services') }}"><h1>Services</h1></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_occasions') }}"><h1>Occasions</h1></a>
