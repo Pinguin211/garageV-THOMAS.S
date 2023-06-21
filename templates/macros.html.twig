@@ -95,11 +95,11 @@
 {% endmacro %}
 
 {% macro CarContentHeadpiece(car) %}
-    <div id="car-content-headpiece">
+    <div id="content-headpiece">
         <div class="title">{{ car.gettitle }}</div>
-        <div class="car-content-headpiece-info">{{ car.getyear }}</div>
-        <div class="car-content-headpiece-info">{{ car.getfuelname }}</div>
-        <div class="car-content-headpiece-info">{{ car.getkilometers | number_format(0, ',', ' ') }} km</div>
+        <div class="content-headpiece-info">{{ car.getyear }}</div>
+        <div class="content-headpiece-info">{{ car.getfuelname }}</div>
+        <div class="content-headpiece-info">{{ car.getkilometers | number_format(0, ',', ' ') }} km</div>
         <div class="text-center title">{{ car.getprice | number_format(0, ',', ' ') }} €</div>
     </div>
 {% endmacro %}

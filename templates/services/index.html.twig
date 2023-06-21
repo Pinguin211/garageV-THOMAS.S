@@ -24,13 +24,13 @@
 
 
 {% macro serviceContent(service) %}
-    <div id="car-content-headpiece">
+    <div id="content-headpiece">
         <div class="title text-center">
             {{ service.getName }}
         </div>
         <ul class="ps-0" style="height: 10em;overflow-y: scroll">
             {% for item in service.getList %}
-                <li class="car-content-headpiece-info list-unstyled text-start">
+                <li class="content-headpiece-info list-unstyled text-start">
                     <a href="{{ path('app_contact') }}?message=Sujet {{ service.getName }} - {{ item }}">{{ item }}</a>
                 </li>
             {% endfor %}

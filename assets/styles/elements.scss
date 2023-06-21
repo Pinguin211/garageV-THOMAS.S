@@ -22,9 +22,6 @@
   font-size: 1.3em;
   font-family: Rajdhanin, sans-serif;
   font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .box {
@@ -72,11 +69,14 @@ a {
     margin-bottom: 1em;
   }
 
-  #car-content-headpiece {
+  #content-headpiece {
     .title {
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .car-content-headpiece-info {
+    .content-headpiece-info {
       margin: 0.5em 0;
     }
   }

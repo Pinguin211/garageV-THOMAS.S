@@ -56,11 +56,11 @@
 {% endmacro %}
 
 {% macro carOptions(car) %}
-    <div id="car-content-headpiece">
+    <div id="content-headpiece">
         <div class="title">Equipements : </div>
         <ul>
             {% for option in car.getOptions %}
-                <li class="car-content-headpiece-info">{{ option.getName }}</li>
+                <li class="content-headpiece-info">{{ option.getName }}</li>
             {% endfor %}
         </ul>
     </div>

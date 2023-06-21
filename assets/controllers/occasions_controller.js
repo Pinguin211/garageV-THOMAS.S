@@ -137,11 +137,11 @@ function getHeadPiece(car)
 
 function getCarContent(car)
 {
-    return `<div id="car-content-headpiece">
+    return `<div id="content-headpiece">
             <div class="title">${car.title}</div>
-            <div class="car-content-headpiece-info">${car.year}</div>
-            <div class="car-content-headpiece-info">${car.fuel}</div>
-            <div class="car-content-headpiece-info">${ car.kilometers.toLocaleString('fr-FR', { style: 'unit', unit: 'kilometer' })}</div>
+            <div class="content-headpiece-info">${car.year}</div>
+            <div class="content-headpiece-info">${car.fuel}</div>
+            <div class="content-headpiece-info">${ car.kilometers.toLocaleString('fr-FR', { style: 'unit', unit: 'kilometer' })}</div>
             <div class="text-center title">${car.price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }) }</div>
             </div>`
 }
