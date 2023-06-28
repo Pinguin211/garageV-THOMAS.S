@@ -1,0 +1,60 @@
+@import "../mixins";
+@import "../variables";
+
+#homepage_page {
+
+  $width: 30vw;
+  $height: calc((#{$width} * 0.5) + 9em);
+
+  #headpiece-contact {
+
+    @media (min-width: 992px) {
+      width: 30vw;
+      height: $height;
+
+      #headpiece-image {
+        height: calc((30vw) * 0.5);
+      }
+    }
+
+    button {
+      font-size: 1.3em;
+      background-color: $impact-color;
+      color: black;
+    }
+  }
+
+
+  #comment-tab {
+
+    background-color: $main-color;
+
+    @media (max-width: 992px) {
+      width: 90vw;
+      height: 20em;
+    }
+
+    @media (min-width: 992px) {
+      width: $width;
+      height: $height;
+    }
+
+  }
+
+  #comment-form {
+
+    background-color: $main-color;
+
+    @media (max-width: 992px) {
+      width: 90vw;
+    }
+
+    @media (min-width: 992px) {
+      width: calc(#{$width} * 0.75);
+      height: $height;
+    }
+
+  }
+
+}
+

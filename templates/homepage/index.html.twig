@@ -5,4 +5,79 @@
 {% block title %}Accueil - GarageV{% endblock %}
 
 {% block body %}
+    <div id="homepage_page">
+        <div class="p-4">
+            <div>
+                <div class="information title fw-bold">
+                    Offres du moment
+                </div>
+                <div class="d-flex flex-column flex-lg-row justify-content-center">
+                    {% for car in cars %}
+                        <div class="my-3 mx-4">
+                            {{ macro.CarHeadpiece(car) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-lg-row justify-content-between">
+                <div class="p-2">
+                    {{ macro.Headpiece(
+                        'headpiece-contact',
+                        asset('images/home1.jpg'),
+                        'Mecano',
+                        null,
+                        'Demander un devis',
+                        path('app_contact')
+                    ) }}
+                </div>
+                <div class="p-2">
+                    {{ _self.commentsTable(rates) }}
+                </div>
+                <div class="p-2">
+                    <div id="comment-form" class="box p-2">
+                        {{ macro.CommentForm() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+
+{% macro commentsTable(rates) %}
+    <div  id="comment-tab" class="d-flex flex-column box p-2">
+        <div id="addComment" class="text-center">
+            <div class="btn">Les derniers avis</div>
+        </div>
+        <div class="overflow-y-scroll">
+            {% for rate in rates %}
+                <div class="my-3">
+                    {{ _self.comment(rate) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro comment(comment) %}
+    <div>
+        <div class="d-flex flex-row justify-content-between pb-1">
+            <div class="d-flex flex-row">
+                <div class="me-3 title fw-bold overflow-hidden text-nowrap">{{ comment.getpostername | securePrint }}</div>
+                <div class="text-nowrap">{{ _self.note(comment.getnote) }}</div>
+            </div>
+            <div>
+                {{ comment.getDate.format('d/m/Y') }}
+            </div>
+        </div>
+        <div class="">
+            {{ comment.getComment | securePrint }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro note(nb) %}
+    {% for n in 1..nb %}
+        <span class="bi bi-star-fill" style="color: goldenrod"></span>
+    {% endfor %}
+{% endmacro %}

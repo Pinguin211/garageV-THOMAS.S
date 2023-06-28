@@ -93,7 +93,7 @@ class OccasionsController extends AbstractController
             return $_POST[$name];
     }
 
-    #[Route('/occasions/car')]
+    #[Route('/occasions/car', name: 'app_occasions_car')]
     public function cars_details(Request $request, AutomaticInterface $automatic,
                                  EntityManagerInterface $entityManager, CheckerInterface $checker): Response
     {

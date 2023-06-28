@@ -4,7 +4,7 @@
   --navbar-height: 10vh; // Hauteur de la navbar
   --text-font-size: 12px; // Taille de texte par defaut
   --title-font-size: 16px; // Taille de titre par defaut
-  --headpiece-width: 200px; // Taille des affiche des occasion et des service
+  --headpiece-width: 230px; // Taille des affiche des occasion et des service
   --car-page-carousel-width: 50vw; // Taille de l'image sur la page des voiture occasions
 }
 
@@ -44,7 +44,12 @@
       --navbar-height: 13vh; // Hauteur de la navbar
       --text-font-size: 20px; // Taille de texte par defaut
       --title-font-size: 26px; // Taille de titre par defaut
-      --headpiece-width: 30vw; // Taille des affiche des occasion et des service
+      @media (min-width: 992px) {
+        --headpiece-width: 30vw; // Taille des affiche des occasion et des service
+      }
+      @media (max-width: 991px) {
+        --headpiece-width: 90vw; // Taille des affiche des occasion et des service
+      }
       --car-page-carousel-width: 90vw; // Taille de l'image sur la page des voiture occasions
     }
 
