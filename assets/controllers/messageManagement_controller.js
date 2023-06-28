@@ -46,7 +46,7 @@ function getDetailButton(message) {
         const name = secureJqueryNodePrint('<p>', `Nom : ${message['name']}`)
         const phone = secureJqueryNodePrint('<p>', `Telephone : ${message['phone']}`)
         const email = secureJqueryNodePrint('<p>', `Email : ${message['email']}`)
-        const text = secureJqueryNodePrint('<p>', `${message['message']}`)
+        const text = secureJqueryNodePrint('<pre>', `${message['message']}`)
 
         const info = $('<div class="col-lg-3 p-2">')
         info.append(name, phone, email)
