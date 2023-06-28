@@ -49,7 +49,7 @@ class CheckerInterface
     {
         if (strlen($input) > $max_len)
             return false;
-        #TODO: AJOUTER UN NETTOYEUR DE STRING POUR LES FAILLE XSS
+        $input = strip_tags($input);
         return true;
     }
 
