@@ -71,6 +71,13 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .configureDevServerOptions(options => {
+        options.https = {
+            key: fs.readFileSync('/etc/ssl/garagev/v.key'),
+            cert: fs.readFileSync('/etc/ssl/garagev/v.crt'),
+        };
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
