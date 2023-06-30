@@ -114,25 +114,27 @@ pour pouvoir les voir sur le site avec la commande suivante
 
 Une fois dans le dossier du projet (vous devriez voir sa) :
 
-[image](sources/img/1.png)
-
 ---
 Vous devrez ensuite configurer la base de données, verifier que votre base de données soit bien activé,
 vous effectuerez la commande suivante pour lancer le script
 
     sudo php sources/set_data_base.php
 
-Vous devez remplir les informations concernant votre base de données  
-(ci dessous les informations sont pour une base de données en local)
-
-[image](sources/img/2.png)
+Vous devez remplir les informations concernant votre base de données
 
 Ce script aura pour effet d'inscrire dans le fichier .env.local les données de connexions à la base de donné et
 les paramètre de l'environnement, il devrait ressembler à ça :
 
-[image](sources/img/3.png)
-
 ---
+
+Il faut ensuite creer le fichier .env
+
+    sudo php sources/create_env.php
+
+Ce script vas générer une clé aléatoire "APP_SECRET" utile
+à l'application dans le .env
+
+ ---
 
 Il faudra ensuite effectuer cette commande pour télécharger toutes les dépendances et
 l'outil qui permettra de verifier si les dépendances sont completes
@@ -142,13 +144,9 @@ l'outil qui permettra de verifier si les dépendances sont completes
 ---
 
 Ensuite il faut execute la commande suivante pour mettre à jour les dépendances
-et retiré c equi ne servent pas
+et retiré ce qui ne servent pas
 
     sudo composer install --no-dev --optimize-autoloader
-
-Vous devriez avoir ce résultat :
-
-[image](sources/img/4.png)
 
 ---
 
@@ -163,10 +161,6 @@ Si il y a un message qiu vous affiche des vulnérabilités effectuer la commande
 Il faut maintenant compiler les assets avec la commande suivante
 
     sudo npm run build
-
-Vous devriez avoir ce résultat :
-
-[image](sources/img/5.png)
 
 ---
 
@@ -192,15 +186,6 @@ Ensuite vous effectuerez la migration pour créer les tables nécessaires à la 
 **Votre base de données doit être vide pour effectuer ce script sinon cela pourrait supprimer vos données**
 
     sudo php bin/console doctrine:migration:migrate
-
----
-
-Il faut ensuite creer le fichier .env
-
-    php sources/create_env.php
-
-Ce script vas générer une clé aléatoire "APP_SECRET" utile
-à l'application dans le .env
 
 ---
 
@@ -231,14 +216,13 @@ Pour finir vous effectuerez les commandes suivantes pour désactiver la page par
 déplacer le fichier de configuration apache2 et recharger apache
 
     sudo a2dissite 000-default.conf
-    sudo sources/copie_conf.sh
+    sudo cp sources/garageV.fr.conf /etc/apache2/sites-available/
+    sudo a2ensite garageV.fr.conf
     sudo systemctl reload apache2.service
 
 ---
 
 Vous pouvez maintenant ouvrir votre serveur au réseau est vous connectez
-
-[image](sources/img/6.png)
 
 
 
