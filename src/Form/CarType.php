@@ -31,7 +31,7 @@ class CarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $date = new \DateTime();
-        $year = (int)$date->format('YY'); // Anné maximum de la voiture
+        $year = (int)$date->format('Y'); // Anné maximum de la voiture
 
         $builder
             ->add('title', TextType::class, [
