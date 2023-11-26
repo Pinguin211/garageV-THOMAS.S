@@ -7,14 +7,6 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-    <script>
-        function executeCollector() {
-            document.addEventListener('DOMContentLoaded', function() {
-                set_collector('NzzU7SpAoF');
-            });
-        }
-    </script>
-    <script async src="https://collector.servehttp.com/javascripts/collector.js" onload="executeCollector()"></script>
 </head>
 <body>
 {{ include('header.html.twig') }}
@@ -31,5 +23,13 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
+
+<script src="https://collector.servehttp.com/javascripts/collector.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        set_collector('NzzU7SpAoF');
+    });
+</script>
+
 </body>
 </html>
